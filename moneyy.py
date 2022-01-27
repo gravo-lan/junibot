@@ -11,6 +11,8 @@ def remove_money(removed_number, author):
     coins = json.load(open('money.txt', 'r'))
     matchedLine = int(coins[str(author)])
     newvalue = matchedLine - removed_number
+    if newvalue <= 0:
+        newvalue = 0
     coins[str(author)] = str(newvalue)
     json.dump(coins, open('money.txt', 'w'))
 

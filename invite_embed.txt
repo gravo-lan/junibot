@@ -1,0 +1,8 @@
+embed = discord.Embed(title="Invite Junibot!", colour=discord.Colour(0xc482f6), url="https://discord.com/api/oauth2/authorize?client_id=726644591411068951&permissions=384064&scope=bot", description="Click [here](https://discord.com/api/oauth2/authorize?client_id=726644591411068951&permissions=384064&scope=bot) to add **Junibot** to your own server!\n\nThanks for playing Junibot <3")
+
+embed.set_thumbnail(url="https://cdn.discordapp.com/emojis/758953277437509652.png?v=1")
+embed.set_author(name="ctx.author", icon_url="ctx.message.author.avatar_url")
+embed.set_footer(text="By ||Art3mis||#0001, Cinnamon「シナモン」 #2020 and Unacorn#2250", icon_url="https://cdn.discordapp.com/emojis/759019733722071070.gif?v=1")
+
+
+$INVITE COMMAND EMBED MESSAGE
