@@ -1,2 +1,2 @@
 # junibot
-#A dead bot. Useful for learning json I guess.
+A dead bot. Useful for learning json I guess.

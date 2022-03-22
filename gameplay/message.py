@@ -30,7 +30,7 @@ from unlocked import add_unlocked_member
 from unlocked import unlock_location
 from unlocked import find_location_lock
 
-#setting prefix and other shit
+#setting prefix and other sh*t
 client = commands.Bot(command_prefix = '$', case_insensitive = True)
 client.remove_command('help')
 
