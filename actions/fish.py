@@ -1,12 +1,12 @@
 import json
 
 def change_rod(rod, person):
-    data = json.load(open("fish.txt", "r"))
+    data = json.load(open("./fish.json", "r"))
     data[person]["rod"] = rod
-    json.dump(data, open("fish.txt", "w"))
+    json.dump(data, open("./fish.json", "w"))
 
 def add_member(person):
-    data = json.load(open("fish.txt", "r"))
+    data = json.load(open("./fish.json", "r"))
     if person not in data:
         data[person] = {}
         data[person]["rod"] = "no rod"
@@ -64,21 +64,21 @@ def add_member(person):
         data[person]["seaweed"] = 0
         data[person]["green algae"] = 0
         data[person]["white algae"] = 0
-        json.dump(data, open("fish.txt", "w"))
+        json.dump(data, open("./fish.json", "w"))
 
 def add_fish(fish, number, person):
-    data = json.load(open("fish.txt", "r"))
+    data = json.load(open("./fish.json", "r"))
     fishy = str(fish.lower())
     data[person][fishy] = data[person][fishy] + number
-    json.dump(data, open("fish.txt", "w"))
+    json.dump(data, open("./fish.json", "w"))
         
 def remove_fish(fish, number, person):
-    data = json.load(open("fish.txt", "r"))
+    data = json.load(open("./fish.json", "r"))
     fishy = str(fish.lower())
     data[person][fishy] = data[person][fishy] - number
-    json.dump(data, open("fish.txt", "w"))
+    json.dump(data, open("./fish.json", "w"))
 
 def find_fish(fish, person):
-    data = json.load(open("fish.txt", "r"))
+    data = json.load(open("./fish.json", "r"))
     fishy = str(fish.lower())
     return data[person][fishy]

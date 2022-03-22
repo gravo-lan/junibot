@@ -1,7 +1,7 @@
 import json
 
 def add_forage_member(person):
-    data = json.load(open("forage.txt", "r"))
+    data = json.load(open("./forage.json", "r"))
     if person not in data:
         data[person] = {}
         data[person]["wild horseradish"] = 0
@@ -38,21 +38,21 @@ def add_forage_member(person):
         data[person]["cave carrot"] = 0
         data[person]["cactus fruit"] = 0
         data[person]["coconut"] = 0
-        json.dump(data, open("forage.txt", "w"))
+        json.dump(data, open("./forage.json", "w"))
 
 def add_forageable(item, number, person):
-    data = json.load(open("forage.txt", "r"))
+    data = json.load(open("./forage.json", "r"))
     item = str(item.lower())
     data[person][item] = data[person][item] + number
-    json.dump(data, open("forage.txt", "w"))
+    json.dump(data, open("./forage.json", "w"))
         
 def remove_forageable(item, number, person):
-    data = json.load(open("forage.txt", "r"))
+    data = json.load(open("./forage.json", "r"))
     item = str(item.lower())
     data[person][item] = data[person][item] - number
-    json.dump(data, open("forage.txt", "w"))
+    json.dump(data, open("./forage.json", "w"))
 
 def find_forageable(item, person):
-    data = json.load(open("forage.txt", "r"))
+    data = json.load(open("./forage.json", "r"))
     item = str(item.lower())
     return data[person][item]

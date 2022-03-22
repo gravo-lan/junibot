@@ -8,27 +8,27 @@ from discord import Game
 from discord.ext import commands
 from discord.ext.commands import cooldown
 from discord.ext.commands import BucketType
-from moneyy import add_money
-from moneyy import remove_money
-from moneyy import find_money
-from fish import add_member
-from fish import change_rod
-from fish import add_fish
-from fish import remove_fish
-from fish import find_fish
-from forage import add_forage_member
-from forage import add_forageable
-from forage import remove_forageable
-from forage import find_forageable
-from location import add_location_member
-from location import change_location
-from location import find_location
-from tools import add_tool_member
-from tools import change_tool
-from tools import find_tool
-from unlocked import add_unlocked_member
-from unlocked import unlock_location
-from unlocked import find_location_lock
+from econ.moneyy import add_money
+from econ.moneyy import remove_money
+from econ.moneyy import find_money
+from actions.fish import add_member
+from actions.fish import change_rod
+from actions.fish import add_fish
+from actions.fish import remove_fish
+from actions.fish import find_fish
+from actions.forage import add_forage_member
+from actions.forage import add_forageable
+from actions.forage import remove_forageable
+from actions.forage import find_forageable
+from gameplay.location import add_location_member
+from gameplay.location import change_location
+from gameplay.location import find_location
+from gameplay.tools import add_tool_member
+from gameplay.tools import change_tool
+from gameplay.tools import find_tool
+from gameplay.unlocked import add_unlocked_member
+from gameplay.unlocked import unlock_location
+from gameplay.unlocked import find_location_lock
 
 #setting prefix and other sh*t
 client = commands.Bot(command_prefix = '$', case_insensitive = True)
@@ -97,33 +97,33 @@ async def on_message(message):
     writer = message.author.id
 
     #checking if users are in the database, and adding them if not
-    coins = json.load(open('money.txt', 'r'))
+    coins = json.load(open('econ/money.json', 'r'))
 
     if str(writer) not in coins:
         coins[str(writer)] = '0'
-        json.dump(coins, open('money.txt', 'w'))
+        json.dump(coins, open('econ/money.json', 'w'))
 
-    fish = json.load(open('fish.txt', 'r'))
+    fish = json.load(open('actions/fish.json', 'r'))
 
     if str(writer) not in fish:
         add_member(str(writer))
 
-    forage = json.load(open('forage.txt', 'r'))
+    forage = json.load(open('actions/forage.json', 'r'))
 
     if str(writer) not in forage:
         add_forage_member(str(writer))
 
-    location = json.load(open('location.txt', 'r'))
+    location = json.load(open('gameplay/location.json', 'r'))
 
     if str(writer) not in location:
         add_location_member(str(writer))
 
-    location = json.load(open('tools.txt', 'r'))
+    location = json.load(open('gameplay/tools.json', 'r'))
 
     if str(writer) not in location:
         add_tool_member(str(writer))
 
-    location = json.load(open('unlocked.txt', 'r'))
+    location = json.load(open('gameplay/unlocked.json', 'r'))
 
     if str(writer) not in location:
         add_unlocked_member(str(writer))
@@ -276,8 +276,8 @@ async def sell(ctx):
     solditem = content[6:]
     if solditem in sellprices:
         money = sellprices[solditem]
-        fish = json.load(open('fish.txt', 'r'))
-        forage = json.load(open('forage.txt', 'r'))
+        fish = json.load(open('actions/fish.json', 'r'))
+        forage = json.load(open('actions/forage.json', 'r'))
         if solditem in fish[writer]:
             if find_fish(solditem, writer) == 0:
                 await ctx.send("You trying to scam me, selling something you don't own?")
@@ -341,7 +341,7 @@ async def inventory(ctx):
     content = str(ctx.message.content).lower()
     #if they said $inv fish
     if "fish" in content:
-        data = json.load(open("fish.txt", "r"))
+        data = json.load(open("actions/fish.json", "r"))
         embed=discord.Embed(title="Fish you own", description="hjafkldsfodjflsadfj")
         #if they said $inv fish 2
         if "2" in content:
@@ -373,7 +373,7 @@ async def inventory(ctx):
         await ctx.send(embed=embed)
     elif "forage" in content:
         embed=discord.Embed(title="Forageables you own", description="owehfwoiafafjdlas")
-        data = json.load(open("forage.txt", "r"))
+        data = json.load(open("actions/forage.json", "r"))
         if "2" in content:
             pagetwo = False
             for forageable in data[writer]:
